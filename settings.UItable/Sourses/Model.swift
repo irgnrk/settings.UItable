@@ -21,7 +21,8 @@ struct ModelItems {
 class Model: ModelProtocol {
     var models = [
         //1
-        [ModelItems(icon: "avatar", firstName: "Ivan", secondName: "iCloud", switchFlag: false)],
+        [ModelItems(icon: "", firstName: "Поиск", secondName: "", switchFlag: false),
+         ModelItems(icon: "avatar", firstName: "Ivan", secondName: "iCloud", switchFlag: false)],
         //2
         [ModelItems(icon: "aviamode", firstName: "Авиарежим", secondName: "", switchFlag: true),
         ModelItems(icon: "wifi", firstName: "Wi-Fi", secondName: "name", switchFlag: false),

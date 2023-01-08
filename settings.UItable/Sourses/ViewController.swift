@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     //MARK: - Setup
     private func setupView() {
         view.backgroundColor = .orange
-        title = "Settings:"
+        title = "Настройки"
         let bar = navigationController?.navigationBar
         bar?.prefersLargeTitles = true // большой текст
        // bar?.layer.backgroundColor = CGColor(red: 254/255, green: 17/255, blue: 242/255, alpha: 1)
@@ -79,15 +79,22 @@ extension ViewController: UITableViewDataSource {
             if indexPath.section == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
                 let cellData = model.models[indexPath.section][indexPath.row]
-                let myImage = UIImage(named: cellData.icon)
-              
+            
                 var content = cell.defaultContentConfiguration()
-                content.image = myImage
+                if indexPath.row == 0 {
+                    content.image = UIImage(systemName: "magnifyingglass")
+                    content.imageProperties.cornerRadius = 25
+                } else {
+                    content.image = UIImage(named: cellData.icon)
+                    content.imageProperties.cornerRadius = 50
+                    
+                }
                 content.text = cellData.firstName
-                content.imageProperties.cornerRadius = tableView.rowHeight / 4
-                content.imageProperties.maximumSize = CGSize(width: tableView.rowHeight, height: tableView.rowHeight)
+                content.secondaryText = cellData.secondName
                 cell.contentConfiguration = content
+                cell.accessoryView = UIImageView(image: UIImage(systemName: "arrowtriangle.forward"))
                 return cell
+                
             } else {
                
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -110,20 +117,27 @@ extension ViewController: UITableViewDataSource {
                 } else {
                     cell.accessoryView = UISwitch()
                 }
-                
-           //     cell.backgroundColor = .systemPink
                 return cell
             }
     }
-    
 }
 
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.row == 1 && indexPath.section == 0) {
+            return 100
+        } else {
+            return 50
+        }
+    }
+    
+  
+    
     
    
 }
