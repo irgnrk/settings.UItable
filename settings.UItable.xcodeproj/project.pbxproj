@@ -15,6 +15,7 @@
 		0C7852A829683E3F00488184 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7852A729683E3F00488184 /* Model.swift */; };
 		0C99A8A4296964E800C850EA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0C99A8A3296964E800C850EA /* SnapKit */; };
 		0C99A8C8296B1A5000C850EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C99A8C7296B1A5000C850EA /* DetailViewController.swift */; };
+		0C99A8CA296B2EC000C850EA /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C99A8C9296B2EC000C850EA /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		0C78529C296838EB00488184 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C7852A729683E3F00488184 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0C99A8C7296B1A5000C850EA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0C99A8C9296B2EC000C850EA /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				0C7852A729683E3F00488184 /* Model.swift */,
 				0C785292296838E900488184 /* ViewController.swift */,
 				0C99A8C7296B1A5000C850EA /* DetailViewController.swift */,
+				0C99A8C9296B2EC000C850EA /* CustomTableViewCell.swift */,
 				0C7852A42968394300488184 /* App */,
 			);
 			path = Sourses;
@@ -172,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C99A8CA296B2EC000C850EA /* CustomTableViewCell.swift in Sources */,
 				0C7852A829683E3F00488184 /* Model.swift in Sources */,
 				0C785293296838E900488184 /* ViewController.swift in Sources */,
 				0C99A8C8296B1A5000C850EA /* DetailViewController.swift in Sources */,

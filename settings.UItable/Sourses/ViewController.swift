@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         let tableview = UITableView(frame: CGRect.zero, style: .insetGrouped)
         tableview.backgroundColor = UIColor.magenta
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell2")
+        tableview.register(CustomTableViewCell.self, forCellReuseIdentifier: "customCell")
         tableview.dataSource = self
         tableview.delegate = self
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -82,24 +82,30 @@ extension ViewController: UITableViewDataSource {
     //настройка ячейки
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             if indexPath.section == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-                let cellData = model.models[indexPath.section][indexPath.row]
-            
-                var content = cell.defaultContentConfiguration()
-                if indexPath.row == 0 {
-                    content.image = UIImage(systemName: "magnifyingglass")
-                    content.imageProperties.cornerRadius = 25
-                } else {
-                    content.image = UIImage(named: cellData.icon)
-                    content.imageProperties.cornerRadius = 50
-                }
                 
-                content.text = cellData.firstName
-                content.secondaryText = cellData.secondName
-                cell.contentConfiguration = content
-                cell.accessoryView = UIImageView(image: UIImage(systemName: "arrowtriangle.forward"))
-                cell.backgroundColor = .magenta
-                return cell
+                
+              
+                    
+            
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                    let cellData = model.models[indexPath.section][indexPath.row]
+                    
+                    var content = cell.defaultContentConfiguration()
+                    if indexPath.row == 0 {
+                        content.image = UIImage(systemName: "magnifyingglass")
+                        content.imageProperties.cornerRadius = 25
+                    } else {
+                        content.image = UIImage(named: cellData.icon)
+                        content.imageProperties.cornerRadius = 50
+                    }
+                    
+                    content.text = cellData.firstName
+                    content.secondaryText = cellData.secondName
+                    cell.contentConfiguration = content
+                    cell.accessoryView = UIImageView(image: UIImage(systemName: "arrowtriangle.forward"))
+                    cell.backgroundColor = .magenta
+                    return cell
+                
                 
             } else {
                
