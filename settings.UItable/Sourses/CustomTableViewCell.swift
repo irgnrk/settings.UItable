@@ -1,15 +1,8 @@
-//
-//  CustomTableViewCell.swift
-//  settings.UItable
-//
-//  Created by Иван Быховский on 8.01.23.
-//
 
 import UIKit
 
-
 class CustomTableViewCell: UITableViewCell {
-
+    
     static let identifier = "CustomTableViewCell"
     
     private lazy var finderView: UITextField = {
@@ -31,24 +24,21 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        backgroundColor = UIColor.magenta
+        backgroundColor = UIColor.systemPink
+        self.imageView?.image = UIImage(systemName: "magnifyingglass")
+        
     }
     
     private func setupHierarchy() {
-        addSubview(finderView)
-
+        contentView.addSubview(finderView)
     }
     
     private func setupLayout() {
-        
         NSLayoutConstraint.activate([
-        finderView.leftAnchor.constraint(equalTo: self.leftAnchor),
-        finderView.rightAnchor.constraint(equalTo: self.rightAnchor),
-        finderView.topAnchor.constraint(equalTo: self.topAnchor),
-        finderView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            finderView.leftAnchor.constraint(equalTo: imageView?.rightAnchor ?? self.rightAnchor, constant: 10),
+            finderView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            finderView.topAnchor.constraint(equalTo: self.topAnchor),
+            finderView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
-    
-  
-
 }

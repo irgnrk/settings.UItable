@@ -1,9 +1,3 @@
-//
-//  DetailViewController.swift
-//  settings.UItable
-//
-//  Created by Иван Быховский on 8.01.23.
-//
 
 import UIKit
 
