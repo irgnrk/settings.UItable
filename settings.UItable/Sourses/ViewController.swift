@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     private lazy var myTableView: UITableView = {
         let tableview = UITableView(frame: CGRect.zero, style: .insetGrouped)
-        tableview.backgroundColor = .yellow
+        tableview.backgroundColor = UIColor.magenta
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell2")
         tableview.dataSource = self
@@ -22,10 +22,10 @@ class ViewController: UIViewController {
         tableview.translatesAutoresizingMaskIntoConstraints = false
         tableview.rowHeight = 50
         return tableview
-        
     } ()
     
     //MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -34,13 +34,18 @@ class ViewController: UIViewController {
     }
     
     //MARK: - Setup
+    
     private func setupView() {
         view.backgroundColor = .orange
         title = "Настройки"
-        let bar = navigationController?.navigationBar
-        bar?.prefersLargeTitles = true // большой текст
-       // bar?.layer.backgroundColor = CGColor(red: 254/255, green: 17/255, blue: 242/255, alpha: 1)
-        bar?.layer.cornerRadius = 10
+        
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.systemCyan,
+            .font: UIFont.boldSystemFont(ofSize: 30),
+        ]
+        navigationController?.navigationBar.layer.cornerRadius = 10
+        navigationController?.navigationBar.largeTitleTextAttributes = attributes
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupHierarchy() {
@@ -87,12 +92,13 @@ extension ViewController: UITableViewDataSource {
                 } else {
                     content.image = UIImage(named: cellData.icon)
                     content.imageProperties.cornerRadius = 50
-                    
                 }
+                
                 content.text = cellData.firstName
                 content.secondaryText = cellData.secondName
                 cell.contentConfiguration = content
                 cell.accessoryView = UIImageView(image: UIImage(systemName: "arrowtriangle.forward"))
+                cell.backgroundColor = .magenta
                 return cell
                 
             } else {
@@ -117,6 +123,7 @@ extension ViewController: UITableViewDataSource {
                 } else {
                     cell.accessoryView = UISwitch()
                 }
+                cell.backgroundColor = .magenta
                 return cell
             }
     }
@@ -126,6 +133,10 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let detailView = DetailViewController()
+        detailView.model = model.models[indexPath.section][indexPath.row]
+        navigationController?.pushViewController(detailView, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -136,8 +147,5 @@ extension ViewController: UITableViewDelegate {
         }
     }
     
-  
-    
-    
-   
+
 }
