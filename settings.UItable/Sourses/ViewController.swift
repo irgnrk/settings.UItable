@@ -6,10 +6,10 @@ class ViewController: UIViewController {
     
     var model = Model()
     
-    //MARK: - UI elements
+    // MARK: - UI elements
     
-    private lazy var tableFontOne = UIFont.systemFont(ofSize: 12)
-    private lazy var tableFontTwo = UIFont.systemFont(ofSize: 10)
+    private lazy var tableFontOne = UIFont.systemFont(ofSize: 16)
+    private lazy var tableFontTwo = UIFont.systemFont(ofSize: 12)
     
     private lazy var myTableView: UITableView = {
         let tableview = UITableView(frame: CGRect.zero, style: .insetGrouped)
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         return tableview
     } ()
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         setupLayout()
     }
     
-    //MARK: - Setup
+    // MARK: - Setup
     
     private func setupView() {
       
@@ -54,13 +54,14 @@ class ViewController: UIViewController {
     private func setupLayout() {
         NSLayoutConstraint.activate([
             myTableView.topAnchor.constraint(equalTo:  view.topAnchor),
-            myTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            myTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            myTableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: -20),
+            myTableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 20),
             myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
+    // тут возможно будет какая то логика
 }
 
 // MARK: - Extentions
