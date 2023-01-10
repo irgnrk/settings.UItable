@@ -1,3 +1,9 @@
+//
+//  AppDelegate.swift
+//  settings.UItable
+//
+//  Created by Иван Быховский on 6.01.23.
+//
 
 import UIKit
 
