@@ -10,6 +10,9 @@ class ViewController: UIViewController {
     
     private lazy var tableFontOne = UIFont.systemFont(ofSize: 16)
     private lazy var tableFontTwo = UIFont.systemFont(ofSize: 12)
+    private lazy var rowHeitLarge = CGFloat(88)
+    private lazy var rowHeitSmall = CGFloat(44)
+    
     
     private lazy var myTableView: UITableView = {
         let tableview = UITableView(frame: CGRect.zero, style: .insetGrouped)
@@ -85,7 +88,7 @@ extension ViewController: UITableViewDataSource {
        
         case 0:
             if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath)
+            let cell =  tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -142,9 +145,9 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.row == 1 && indexPath.section == 0) {
-            return 88
+            return rowHeitLarge
         } else {
-            return 44
+            return rowHeitSmall
         }
     }
 }
