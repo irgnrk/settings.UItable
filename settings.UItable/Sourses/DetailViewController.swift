@@ -3,7 +3,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var valueForImage: CGFloat = 250
+    var valueForImage: CGFloat = 100
     
     var model: ModelItems? {
         didSet {
@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = valueForImage / 2
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = UIColor.black
+      //  imageView.tintColor = UIColor.black
         return imageView
     }()
     
@@ -39,7 +39,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setupView() {
-        view.backgroundColor = .magenta
+        view.backgroundColor = .systemBackground
     }
     
     private func setupHierarchy() {

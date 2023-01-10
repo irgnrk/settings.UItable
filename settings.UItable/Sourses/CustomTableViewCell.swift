@@ -24,7 +24,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        backgroundColor = UIColor.systemPink
+        backgroundColor = UIColor.systemBackground
         self.imageView?.image = UIImage(systemName: "magnifyingglass")
         
     }

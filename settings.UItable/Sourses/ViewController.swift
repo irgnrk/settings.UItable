@@ -1,6 +1,5 @@
 
 import UIKit
-import SnapKit
 
 
 class ViewController: UIViewController {
@@ -14,7 +13,7 @@ class ViewController: UIViewController {
     
     private lazy var myTableView: UITableView = {
         let tableview = UITableView(frame: CGRect.zero, style: .insetGrouped)
-        tableview.backgroundColor = UIColor.magenta
+        tableview.backgroundColor = UIColor.systemBackground
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableview.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         tableview.dataSource = self
@@ -36,13 +35,14 @@ class ViewController: UIViewController {
     //MARK: - Setup
     
     private func setupView() {
-        view.backgroundColor = .orange
+      
         title = "Настройки"
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.systemCyan,
+            .foregroundColor: UIColor.systemGray4,
             .font: UIFont.boldSystemFont(ofSize: 30),
         ]
-        navigationController?.navigationBar.layer.cornerRadius = 10
+      
+        navigationController?.navigationBar.backgroundColor = .systemBackground
         navigationController?.navigationBar.largeTitleTextAttributes = attributes
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -52,9 +52,12 @@ class ViewController: UIViewController {
     }
     
     private func setupLayout() {
-        myTableView.snp.makeConstraints { make in
-            make.top.right.bottom.left.equalTo(view)
-        }
+        NSLayoutConstraint.activate([
+            myTableView.topAnchor.constraint(equalTo:  view.topAnchor),
+            myTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            myTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            myTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     //MARK: - Actions
@@ -76,25 +79,28 @@ extension ViewController: UITableViewDataSource {
     
     //настройка ячейки
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+     
+        switch indexPath.section {
+       
+        case 0:
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath)
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-                let cellData = model.models[indexPath.section][indexPath.row]
-                var content = cell.defaultContentConfiguration()
-                content.image = UIImage(named: cellData.icon)
-                content.imageProperties.cornerRadius = 50
-                content.text = cellData.firstName
-                content.secondaryText = cellData.secondName
-                cell.contentConfiguration = content
-                cell.accessoryView = UIImageView(image: UIImage(systemName: "arrowtriangle.forward"))
-                cell.backgroundColor = .magenta
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath)
+            return cell
         } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cellData = model.models[indexPath.section][indexPath.row]
+            var content = cell.defaultContentConfiguration()
+            content.image = UIImage(named: cellData.icon)
+            content.imageProperties.cornerRadius = CGFloat((content.image?.cgImage?.height ?? 0) / 2)
+            content.text = cellData.firstName
+            content.secondaryText = cellData.secondName
+            cell.contentConfiguration = content
+            cell.accessoryView = UIImageView(image: UIImage(systemName: "arrowtriangle.forward"))
+            cell.backgroundColor = .systemBackground
+            return cell
+        }
             
+        default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             let cellData = model.models[indexPath.section][indexPath.row]
             let myImage = UIImage(named: cellData.icon)
@@ -104,7 +110,7 @@ extension ViewController: UITableViewDataSource {
             content.text = cellData.firstName
             content.textProperties.font = tableFontOne
             content.imageProperties.cornerRadius = tableView.rowHeight / 4
-            content.imageProperties.maximumSize = CGSize(width: tableView.rowHeight - 5, height: tableView.rowHeight - 5 )
+            content.imageProperties.maximumSize = CGSize(width: tableView.rowHeight * 0.7, height: tableView.rowHeight * 0.7 )
             content.secondaryText = cellData.secondName
             content.secondaryTextProperties.font = tableFontTwo
             content.prefersSideBySideTextAndSecondaryText = true
@@ -115,7 +121,7 @@ extension ViewController: UITableViewDataSource {
             } else {
                 cell.accessoryView = UISwitch()
             }
-            cell.backgroundColor = .magenta
+            cell.backgroundColor = .systemBackground
             return cell
         }
     }
@@ -135,9 +141,9 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.row == 1 && indexPath.section == 0) {
-            return 100
+            return 88
         } else {
-            return 50
+            return 44
         }
     }
 }
